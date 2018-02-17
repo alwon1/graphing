@@ -37,8 +37,11 @@ namespace ConsoleApp1
             DrawCartisan(minX, maxX, -5, 5, cDrawer, out int scaleX, out int scaleY);
             for (double x = minX*scaleX; x < maxX*scaleX; x += 1.0/scaleX)//at 50 scale
             {
-                int y = Convert.ToInt32(a * (-x * x) - b * x - c + scaleY*5);
-                int yl = Convert.ToInt32(a * (-(x - (1.0/scaleX)) * (x - (1.0 / scaleX))) - b * (x - (1.0 / scaleX)) - c + scaleY*5);
+                double x1 = x - (1.0 / scaleX);
+                double yc =  a * x * x + b * x + c;
+                double yc1= a * x1 * x1 + b * x1 + c;
+                int y = Convert.ToInt32(-yc*scaleY+(scaleY*5));
+                int yl = Convert.ToInt32(-yc1 * scaleY + (scaleY * 5));
                 int xp = Convert.ToInt32(x*scaleX+(-minX*scaleX));
                 int xpl = Convert.ToInt32((x - (1.0 / scaleX))*scaleX + (-minX*scaleX));
                 cDrawer.AddLine(xp, y, xpl , yl, Color.White, 3);
